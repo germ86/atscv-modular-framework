@@ -33,10 +33,8 @@ for tex in "${files[@]}"; do
     echo "FAIL: $name"
     echo "Log: $log_file"
     if [[ -f "$log_file" ]]; then
-      echo "--- Last 50 log lines ($name) ---"
-      tail -n 50 "$log_file"
-      echo "--- First error block ($name) ---"
-      awk '''/Undefined control sequence|LaTeX Error|Package .* Error|Emergency stop|Fatal error/{print; for(i=0;i<8;i++){if(getline>0) print}; exit}''' "$log_file" || true
+      echo "--- Last 120 log lines ($name) ---"
+      tail -n 120 "$log_file"
       echo "--- Extracted LaTeX errors ($name) ---"
       grep -E "Undefined control sequence|LaTeX Error|Package .* Error|Emergency stop|Fatal error" "$log_file" || true
     fi
