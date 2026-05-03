@@ -1,2 +1,3 @@
-# atscv-modular-framework
-atscv is a LaTeX-based, ATS-optimized CV framework that ensures reliable parsing by Applicant Tracking Systems while maintaining high-quality, human-readable document design.
+# atscv
+
+atscv is a modular LuaLaTeX framework for deterministic, ATS-safe CV and cover-letter generation.

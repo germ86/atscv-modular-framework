@@ -1,0 +1,33 @@
+name: latex
+on: [push,pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y texlive-luatex texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-lang-arabic texlive-lang-cyrillic texlive-lang-cjk texlive-lang-european texlive-lang-other poppler-utils fontconfig ripgrep
+      - name: Check forbidden patterns
+        run: bash tests/check-forbidden-patterns.sh
+      - name: Check fonts
+        run: bash tests/font-check.sh
+      - name: Smoke test modules
+        run: bash tests/module-smoke.sh
+      - name: Smoke test colors
+        run: bash tests/color-module-smoke.sh
+      - name: Smoke test styles
+        run: bash tests/style-module-smoke.sh
+      - name: Smoke test layouts
+        run: bash tests/layout-module-smoke.sh
+      - name: Smoke test languages
+        run: bash tests/language-module-smoke.sh
+      - name: Compile examples
+        run: bash tests/compile-all.sh
+      - name: Extract text
+        run: bash tests/extract-text.sh
+      - name: Validate ATS extraction
+        run: bash tests/ats-validate.sh
+      - name: Human scan check
+        run: bash tests/human-scan-check.sh
+      - name: CTAN readiness check
+        run: bash tests/ctan-check.sh
