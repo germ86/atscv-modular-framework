@@ -6,10 +6,39 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.35\baselineskip}
+\makeatletter
 
-\newcommand{\cvname}[1]{\begingroup\atscvNameSize\bfseries\color{cvprimary}#1\par\endgroup}
-\newcommand{\cvtitle}[1]{\begingroup\atscvTitleSize\color{cvmuted}#1\par\endgroup}
-\newcommand{\cvcontact}[1]{\color{cvmuted}#1\par}
+\providecommand{\cv@name}{}
+\providecommand{\cv@title}{}
+\providecommand{\cv@email}{}
+\providecommand{\cv@phone}{}
+\providecommand{\cv@location}{}
+\providecommand{\cv@linkedin}{}
+\providecommand{\cv@github}{}
+\providecommand{\cv@orcid}{}
+\providecommand{\cv@doi}{}
+
+\newcommand{\cvname}[1]{\gdef\cv@name{#1}}
+\newcommand{\cvtitle}[1]{\gdef\cv@title{#1}}
+\newcommand{\cvemail}[1]{\gdef\cv@email{#1}}
+\newcommand{\cvphone}[1]{\gdef\cv@phone{#1}}
+\newcommand{\cvlocation}[1]{\gdef\cv@location{#1}}
+\newcommand{\cvlinkedin}[1]{\gdef\cv@linkedin{#1}}
+\newcommand{\cvgithub}[1]{\gdef\cv@github{#1}}
+\newcommand{\cvorcid}[1]{\gdef\cv@orcid{#1}}
+\newcommand{\cvdoi}[1]{\gdef\cv@doi{#1}}
+
+\newcommand{\makecvheader}{%
+  {\atscvNameSize\bfseries\color{cvprimary}\cv@name\par}
+  {\atscvTitleSize\color{cvmuted}\cv@title\par}
+  \atscvifempty{\cv@email}{}{\cv@email\par}
+  \atscvifempty{\cv@phone}{}{\cv@phone\par}
+  \atscvifempty{\cv@location}{}{\cv@location\par}
+  \atscvifempty{\cv@linkedin}{}{\cv@linkedin\par}
+  \atscvifempty{\cv@github}{}{\cv@github\par}
+  \atscvifempty{\cv@orcid}{}{\cv@orcid\par}
+  \atscvifempty{\cv@doi}{}{\cv@doi\par}
+}
 
 \newcommand{\cvsection}[1]{%
   \atscvSectionBefore
@@ -18,11 +47,24 @@
   \hrule height \atscvDividerThickness
   \atscvSectionAfter
 }
+\newcommand{\cvprofile}[1]{#1\par\atscvEntrySpace}
+\newcommand{\cvprofilesection}[1]{\cvprofile{#1}}
 
 \newcommand{\cventry}[3]{%
   \textbf{#1}\par
   \textit{#2}\par
   #3\par
-  \atscvEntrySpace
+  \@ifnextchar\bgroup{\atscv@cventry@four}{\atscvEntrySpace}%
 }
+\newcommand{\atscv@cventry@four}[1]{#1\par\@ifnextchar\bgroup{\atscv@cventry@five}{\atscvEntrySpace}%}
+\newcommand{\atscv@cventry@five}[1]{#1\par\atscvEntrySpace}
+\newcommand{\cventryfour}[4]{\cventry{#1}{#2}{#3}{#4}%}
+\newcommand{\cventryfive}[5]{\cventry{#1}{#2}{#3}{#4}{#5}%}
+
+\newcommand{\cvachievement}[1]{#1}
+\newcommand{\cvproject}[2]{\textbf{#1}: #2\par\atscvEntrySpace}
+\newcommand{\cvskillgroup}[2]{\textbf{#1}: #2\par}
+\newcommand{\cveducation}[3]{\textbf{#1}\par #2\par #3\par\atscvEntrySpace}
+
+\makeatother
 \endinput
