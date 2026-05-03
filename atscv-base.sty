@@ -31,6 +31,10 @@
 \newcommand{\atscvEntrySpace}{\vspace{0.2\baselineskip}}
 \newcommand{\atscvDividerThickness}{0.4pt}
 
+\newcommand{\atscvifempty}[3]{%
+  \if\relax\detokenize{#1}\relax #2\else #3\fi
+}
+
 % Heading labels
 \newcommand{\atscvHeadingSummary}{Summary}
 \newcommand{\atscvHeadingExperience}{Experience}
@@ -38,6 +42,12 @@
 \newcommand{\atscvHeadingSkills}{Skills}
 \newcommand{\atscvHeadingProjects}{Projects}
 \newcommand{\atscvHeadingCertifications}{Certifications}
+\newcommand{\headingSummary}{\atscvHeadingSummary}
+\newcommand{\headingExperience}{\atscvHeadingExperience}
+\newcommand{\headingEducation}{\atscvHeadingEducation}
+\newcommand{\headingSkills}{\atscvHeadingSkills}
+\newcommand{\headingProjects}{\atscvHeadingProjects}
+\newcommand{\headingCertifications}{\atscvHeadingCertifications}
 
 \newcommand{\cvdebugoptions}{%
   \par\noindent Preset: \atscvPreset\par
