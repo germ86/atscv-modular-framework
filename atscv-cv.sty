@@ -1,39 +1,28 @@
-\providecommand{\headingSummary}{Summary}
-\providecommand{\headingExperience}{Professional Experience}
-\ProvidesPackage{atscv-cv}[2026/05/03 v0.2.0 CV macros]
-\newcommand{\cv@name}{}\newcommand{\cv@title}{}\newcommand{\cv@email}{}
-\newcommand{\cv@phone}{}\newcommand{\cv@location}{}\newcommand{\cv@linkedin}{}
-\newcommand{\cv@github}{}\newcommand{\cv@orcid}{}\newcommand{\cv@doi}{}
-\newcommand{\cvname}[1]{\gdef\cv@name{#1}}\newcommand{\cvtitle}[1]{\gdef\cv@title{#1}}
-\newcommand{\cvemail}[1]{\gdef\cv@email{#1}}\newcommand{\cvphone}[1]{\gdef\cv@phone{#1}}
-\newcommand{\cvlocation}[1]{\gdef\cv@location{#1}}\newcommand{\cvlinkedin}[1]{\gdef\cv@linkedin{#1}}
-\newcommand{\cvgithub}[1]{\gdef\cv@github{#1}}\newcommand{\cvorcid}[1]{\gdef\cv@orcid{#1}}
-\newcommand{\cvdoi}[1]{\gdef\cv@doi{#1}}
-\newcommand{\atscv@contactline}{%
-\atscvifempty{\cv@email}{}{\cv@email\quad}
-\atscvifempty{\cv@phone}{}{\cv@phone\quad}
-\atscvifempty{\cv@location}{}{\cv@location\quad}
-\atscvifempty{\cv@linkedin}{}{\cv@linkedin\quad}
-\atscvifempty{\cv@github}{}{\cv@github\quad}
-\atscvifempty{\cv@orcid}{}{ORCID: \cv@orcid\quad}
-\atscvifempty{\cv@doi}{}{DOI: \cv@doi}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{atscv-cv}[2026/05/03 ATS-safe CV macros]
+
+\RequirePackage{atscv-base}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35\baselineskip}
+
+\newcommand{\cvname}[1]{\begingroup\atscvNameSize\bfseries\color{cvprimary}#1\par\endgroup}
+\newcommand{\cvtitle}[1]{\begingroup\atscvTitleSize\color{cvmuted}#1\par\endgroup}
+\newcommand{\cvcontact}[1]{\color{cvmuted}#1\par}
+
+\newcommand{\cvsection}[1]{%
+  \atscvSectionBefore
+  {\atscvSectionSize\bfseries\color{cvprimary}#1\par}
+  \vspace{0.2\baselineskip}
+  \hrule height \atscvDividerThickness
+  \atscvSectionAfter
 }
-\newcommand{\makecvheader}{\par\noindent{\color{cvprimary}\atscvNameSize\textbf{\cv@name}}\par
-{\color{cvmuted}\atscvTitleSize \cv@title}\par
-{\color{cvtext}\small \atscv@contactline}\par\vspace{0.6em}}
-\newcommand{\cvsection}[1]{\vspace{\atscvSectionBefore}\par\noindent{\color{cvprimary}\atscvSectionSize\textbf{#1}}\par
-\noindent\color{cvdivider}\rule{\linewidth}{\atscvDividerThickness}\color{cvtext}\vspace{\atscvSectionAfter}}
-\newcommand{\cvprofile}[1]{\par#1\par}
-\newcommand{\cvprofilesection}[1]{\cvsection{\headingProfile}\cvprofile{#1}}
-\newcommand{\cventry}[4]{\par\noindent\textbf{#1} \hfill #2\par\emph{#3}\par#4\par\vspace{\atscvEntrySpace}}
-\newcommand{\cventryfive}[5]{\par\noindent\textbf{#1} --- #2, #3 \hfill #4\par#5\par\vspace{\atscvEntrySpace}}
-\newcommand{\cvachievement}[1]{\par\noindent\textbullet\ #1\par}
-\newcommand{\cvimpact}[1]{\par\noindent\textbf{Impact:} #1\par}
-\newcommand{\cvhighlight}[1]{\par\noindent\textbf{Highlight:} #1\par}
-\newcommand{\cvkpi}[2]{\par\noindent\textbf{#1:} #2\par}
-\newcommand{\cvskills}[1]{\par#1\par}
-\newcommand{\cvskillgroup}[2]{\par\noindent\textbf{#1:} #2\par}
-\newcommand{\cvproject}[3]{\cventry{#1}{#2}{}{#3}}
-\newcommand{\cvcertification}[3]{\par\noindent\textbf{#1}, #2 \hfill #3\par}
-\newcommand{\cveducation}[3]{\par\noindent\textbf{#1}, #2 \hfill #3\par}
-\newcommand{\cvcommunity}[3]{\cventry{#1}{#2}{}{#3}}
+
+\newcommand{\cventry}[3]{%
+  \textbf{#1}\par
+  \textit{#2}\par
+  #3\par
+  \atscvEntrySpace
+}
+\endinput
