@@ -49,6 +49,14 @@
 }
 \newcommand{\cvprofile}[1]{#1\par\atscvEntrySpace}
 \newcommand{\cvprofilesection}[1]{\cvprofile{#1}}
+\newcommand{\cveducation}[3]{%
+  \textbf{#1}\hfill #2\par
+  #3\par
+  \atscvEntrySpace
+}
+\newcommand{\cvskillgroup}[2]{%
+  \textbf{#1}: #2\par
+}
 
 \newcommand{\cventry}[3]{%
   \textbf{#1}\par
@@ -76,6 +84,7 @@
 }
 
 \newcommand{\cvachievement}[1]{#1}
+\newcommand{\cvproject}[1]{#1\par}
 
 \makeatother
 \endinput
