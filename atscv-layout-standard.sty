@@ -1,2 +1,10 @@
-\ProvidesPackage{atscv-layout-standard}[2026/05/03 wrapper]
-\RequirePackage{layouts/atscv-layout-standard}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{atscv-layout-standard}[2026/05/03 Standard layout module]
+\RequirePackage{atscv-base}
+\renewcommand{\atscvLayout}{standard}
+\renewcommand{\atscvSectionBefore}{\vspace{0.8\baselineskip}}
+\renewcommand{\atscvSectionAfter}{\vspace{0.25\baselineskip}}
+\renewcommand{\atscvEntrySpace}{\vspace{0.25\baselineskip}}
+\renewcommand{\atscvDividerThickness}{0.5pt}
+\typeout{ATSCV MODULE loaded type=layout name=standard}
+\endinput
