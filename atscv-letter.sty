@@ -1,0 +1,33 @@
+\ProvidesPackage{atscv-letter}[2026/05/03 v0.2.0 cover letter macros]
+\newcommand{\letter@recipient}{}\newcommand{\letter@company}{}\newcommand{\letter@address}{}
+\newcommand{\letter@date}{}\newcommand{\letter@subject}{}\newcommand{\letter@opening}{}
+\newcommand{\letter@body}{}\newcommand{\letter@closing}{}\newcommand{\letter@signature}{}
+\newcommand{\letterrecipient}[1]{\gdef\letter@recipient{#1}}
+\newcommand{\lettercompany}[1]{\gdef\letter@company{#1}}
+\newcommand{\letteraddress}[1]{\gdef\letter@address{#1}}
+\newcommand{\letterdate}[1]{\gdef\letter@date{#1}}
+\newcommand{\lettersubject}[1]{\gdef\letter@subject{#1}}
+\newcommand{\letteropening}[1]{\gdef\letter@opening{#1}}
+\newcommand{\letterbody}[1]{\gdef\letter@body{#1}}
+\newcommand{\letterclosing}[1]{\gdef\letter@closing{#1}}
+\newcommand{\lettersignature}[1]{\gdef\letter@signature{#1}}
+\newcommand{\letterparagraph}[1]{\par#1\par}
+\newcommand{\letterimpact}[1]{\letterparagraph{\textbf{Impact:} #1}}
+\newcommand{\letterfit}[1]{\letterparagraph{\textbf{Fit:} #1}}
+\newcommand{\lettermotivation}[1]{\letterparagraph{\textbf{Motivation:} #1}}
+\newcommand{\lettercta}[1]{\letterparagraph{\textbf{Next Step:} #1}}
+\newcommand{\makecoverletter}{\par\noindent{\atscvNameSize\textbf{\cv@name}}\par
+\atscvifempty{\cv@email}{}{\cv@email\par}
+\atscvifempty{\cv@phone}{}{\cv@phone\par}
+\atscvifempty{\cv@location}{}{\cv@location\par}
+\vspace{0.6em}
+\atscvifempty{\letter@date}{}{\letter@date\par}
+\atscvifempty{\letter@recipient}{}{\letter@recipient\par}
+\atscvifempty{\letter@company}{}{\letter@company\par}
+\atscvifempty{\letter@address}{}{\letter@address\par}
+\vspace{0.4em}
+\atscvifempty{\letter@subject}{}{\textbf{\letter@subject}\par}
+\atscvifempty{\letter@opening}{}{\letter@opening\par}
+\letter@body\par
+\atscvifempty{\letter@closing}{}{\letter@closing\par}
+\atscvifempty{\letter@signature}{}{\letter@signature\par}}
