@@ -1,11 +1,22 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{atscv-letter}[2026/05/03 v0.2.0 cover letter macros]
+\RequirePackage{atscv-base}
+
 \providecommand{\cv@name}{}
 \providecommand{\cv@email}{}
 \providecommand{\cv@phone}{}
 \providecommand{\cv@location}{}
-\ProvidesPackage{atscv-letter}[2026/05/03 v0.2.0 cover letter macros]
-\newcommand{\letter@recipient}{}\newcommand{\letter@company}{}\newcommand{\letter@address}{}
-\newcommand{\letter@date}{}\newcommand{\letter@subject}{}\newcommand{\letter@opening}{}
-\newcommand{\letter@body}{}\newcommand{\letter@closing}{}\newcommand{\letter@signature}{}
+
+\newcommand{\letter@recipient}{}
+\newcommand{\letter@company}{}
+\newcommand{\letter@address}{}
+\newcommand{\letter@date}{}
+\newcommand{\letter@subject}{}
+\newcommand{\letter@opening}{}
+\newcommand{\letter@body}{}
+\newcommand{\letter@closing}{}
+\newcommand{\letter@signature}{}
+
 \newcommand{\letterrecipient}[1]{\gdef\letter@recipient{#1}}
 \newcommand{\lettercompany}[1]{\gdef\letter@company{#1}}
 \newcommand{\letteraddress}[1]{\gdef\letter@address{#1}}
@@ -20,6 +31,7 @@
 \newcommand{\letterfit}[1]{\letterparagraph{\textbf{Fit:} #1}}
 \newcommand{\lettermotivation}[1]{\letterparagraph{\textbf{Motivation:} #1}}
 \newcommand{\lettercta}[1]{\letterparagraph{\textbf{Next Step:} #1}}
+
 \newcommand{\makecoverletter}{\par\noindent{\atscvNameSize\textbf{\cv@name}}\par
 \atscvifempty{\cv@email}{}{\cv@email\par}
 \atscvifempty{\cv@phone}{}{\cv@phone\par}
@@ -35,3 +47,5 @@
 \letter@body\par
 \atscvifempty{\letter@closing}{}{\letter@closing\par}
 \atscvifempty{\letter@signature}{}{\letter@signature\par}}
+
+\endinput
