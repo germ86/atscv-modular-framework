@@ -1,16 +1,17 @@
-\ProvidesPackage{atscv-base}[2026/05/03 v0.2.0 core state and tokens]
+\ProvidesPackage{atscv-base}[2026/05/03 v0.2.1 core state and tokens]
 \setmainfont{TeX Gyre Termes}[Ligatures=NoCommon]
 \setsansfont{TeX Gyre Heros}[Ligatures=NoCommon]
+\newcommand{\atscvPreset}{none}
 \newcommand{\atscvSchema}{general}
 \newcommand{\atscvColor}{blue}
 \newcommand{\atscvStyle}{modern}
 \newcommand{\atscvLayout}{standard}
 \newcommand{\atscvLanguage}{en}
-\definecolor{cvtext}{HTML}{111111}
-\definecolor{cvprimary}{HTML}{0057B8}
-\definecolor{cvaccent}{HTML}{1F6FEB}
-\definecolor{cvmuted}{HTML}{555555}
-\definecolor{cvdivider}{HTML}{0057B8}
+\definecolor{cvtext}{HTML}{000000}
+\definecolor{cvprimary}{HTML}{000000}
+\definecolor{cvaccent}{HTML}{000000}
+\definecolor{cvmuted}{HTML}{666666}
+\definecolor{cvdivider}{HTML}{000000}
 \newcommand{\atscvNameSize}{\LARGE}
 \newcommand{\atscvTitleSize}{\normalsize}
 \newcommand{\atscvSectionSize}{\large}
@@ -34,14 +35,18 @@
 \newcommand{\headingSelectedProjects}{Selected Projects}
 \newcommand{\cvdebugoptions}{%
 \par\noindent\textbf{atscv module configuration:}\par
+Preset: \atscvPreset\par
 Schema: \atscvSchema\par
 Color: \atscvColor\par
 Style: \atscvStyle\par
 Layout: \atscvLayout\par
 Language: \atscvLanguage\par
+\typeout{ATSCV CONFIG preset=\atscvPreset}
 \typeout{ATSCV CONFIG schema=\atscvSchema}
 \typeout{ATSCV CONFIG color=\atscvColor}
 \typeout{ATSCV CONFIG style=\atscvStyle}
 \typeout{ATSCV CONFIG layout=\atscvLayout}
 \typeout{ATSCV CONFIG language=\atscvLanguage}
 }
+
+\AtBeginDocument{\typeout{ATSCV STATE preset=\atscvPreset}\typeout{ATSCV STATE color=\atscvColor}}
