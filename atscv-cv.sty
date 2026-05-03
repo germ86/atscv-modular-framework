@@ -6,6 +6,7 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.35\baselineskip}
+\makeatletter
 
 \newcommand{\cvname}[1]{\begingroup\atscvNameSize\bfseries\color{cvprimary}#1\par\endgroup}
 \newcommand{\cvtitle}[1]{\begingroup\atscvTitleSize\color{cvmuted}#1\par\endgroup}
@@ -23,6 +24,28 @@
   \textbf{#1}\par
   \textit{#2}\par
   #3\par
+  \@ifnextchar\bgroup{\atscv@cventry@four}{\atscvEntrySpace}%
+}
+
+\newcommand{\atscv@cventry@four}[1]{%
+  #1\par
+  \@ifnextchar\bgroup{\atscv@cventry@five}{\atscvEntrySpace}%
+}
+
+\newcommand{\atscv@cventry@five}[1]{%
+  #1\par
   \atscvEntrySpace
 }
+
+\newcommand{\cventryfour}[4]{%
+  \cventry{#1}{#2}{#3}{#4}%
+}
+
+\newcommand{\cventryfive}[5]{%
+  \cventry{#1}{#2}{#3}{#4}{#5}%
+}
+
+\newcommand{\cvachievement}[1]{#1}
+
+\makeatother
 \endinput
