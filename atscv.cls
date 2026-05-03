@@ -3,7 +3,9 @@
 
 \LoadClass{article}
 \RequirePackage{atscv-base}
+\RequirePackage{atscv-debug}
 \RequirePackage{atscv-cv}
+\RequirePackage{atscv-letter}
 
 \typeout{ATSCV CLASS loaded}
 \endinput
