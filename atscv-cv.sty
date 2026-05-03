@@ -56,15 +56,26 @@
   #3\par
   \@ifnextchar\bgroup{\atscv@cventry@four}{\atscvEntrySpace}%
 }
-\newcommand{\atscv@cventry@four}[1]{#1\par\@ifnextchar\bgroup{\atscv@cventry@five}{\atscvEntrySpace}%}
-\newcommand{\atscv@cventry@five}[1]{#1\par\atscvEntrySpace}
-\newcommand{\cventryfour}[4]{\cventry{#1}{#2}{#3}{#4}%}
-\newcommand{\cventryfive}[5]{\cventry{#1}{#2}{#3}{#4}{#5}%}
+
+\newcommand{\atscv@cventry@four}[1]{%
+  #1\par
+  \@ifnextchar\bgroup{\atscv@cventry@five}{\atscvEntrySpace}%
+}
+
+\newcommand{\atscv@cventry@five}[1]{%
+  #1\par
+  \atscvEntrySpace
+}
+
+\newcommand{\cventryfour}[4]{%
+  \cventry{#1}{#2}{#3}{#4}%
+}
+
+\newcommand{\cventryfive}[5]{%
+  \cventry{#1}{#2}{#3}{#4}{#5}%
+}
 
 \newcommand{\cvachievement}[1]{#1}
-\newcommand{\cvproject}[2]{\textbf{#1}: #2\par\atscvEntrySpace}
-\newcommand{\cvskillgroup}[2]{\textbf{#1}: #2\par}
-\newcommand{\cveducation}[3]{\textbf{#1}\par #2\par #3\par\atscvEntrySpace}
 
 \makeatother
 \endinput
