@@ -58,6 +58,9 @@
   \textbf{#1}: #2\par
 }
 
+% ATS-safe inline accent helper: keeps plain text unchanged while adding visual emphasis.
+\newcommand{\cvhighlight}[1]{{\color{cvaccent}\emph{#1}}}
+
 \newcommand{\cventry}[3]{%
   \textbf{#1}\par
   \textit{#2}\par
