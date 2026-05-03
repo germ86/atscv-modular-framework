@@ -21,6 +21,8 @@ jobs:
         run: bash tests/layout-module-smoke.sh
       - name: Smoke test languages
         run: bash tests/language-module-smoke.sh
+      - name: Preset smoke tests
+        run: bash tests/preset-smoke.sh
       - name: Compile examples
         run: bash tests/compile-all.sh
       - name: Extract text
