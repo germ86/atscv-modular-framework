@@ -7,11 +7,11 @@
 \newcommand{\atscvStyle}{modern}
 \newcommand{\atscvLayout}{standard}
 \newcommand{\atscvLanguage}{en}
-\definecolor{cvtext}{HTML}{111111}
-\definecolor{cvprimary}{HTML}{0057B8}
-\definecolor{cvaccent}{HTML}{1F6FEB}
-\definecolor{cvmuted}{HTML}{555555}
-\definecolor{cvdivider}{HTML}{0057B8}
+\definecolor{cvtext}{HTML}{000000}
+\definecolor{cvprimary}{HTML}{000000}
+\definecolor{cvaccent}{HTML}{000000}
+\definecolor{cvmuted}{HTML}{666666}
+\definecolor{cvdivider}{HTML}{000000}
 \newcommand{\atscvNameSize}{\LARGE}
 \newcommand{\atscvTitleSize}{\normalsize}
 \newcommand{\atscvSectionSize}{\large}
@@ -48,3 +48,5 @@ Language: \atscvLanguage\par
 \typeout{ATSCV CONFIG layout=\atscvLayout}
 \typeout{ATSCV CONFIG language=\atscvLanguage}
 }
+
+\AtBeginDocument{\typeout{ATSCV STATE preset=\atscvPreset}\typeout{ATSCV STATE color=\atscvColor}}
