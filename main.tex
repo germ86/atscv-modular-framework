@@ -1,0 +1,82 @@
+\documentclass{atscv}
+
+% ==================================================
+% ATSCV SWITCHBOARD
+% Choose exactly one preset OR one custom module stack.
+% Do not enable multiple presets at once.
+% ==================================================
+
+% ==================================================
+% ATSCV PRESET SELECTION
+% Choose exactly ONE preset package.
+% Comment out all others.
+% ==================================================
+
+\usepackage{atscv-cv-cloud-green-modern-en}
+% \usepackage{atscv-cv-cloud-burgundy-consulting-de}
+% \usepackage{atscv-cv-support-burgundy-consulting-de}
+% \usepackage{atscv-cv-executive-navy-executive-en}
+% \usepackage{atscv-cv-lawfirm-black-lawfirm-de}
+% \usepackage{atscv-cv-ats-black-ats-en}
+
+% Language switch tip:
+% - Pick a preset ending in -de for German, or use \usepackage{atscv-lang-de} in the custom block.
+% Color switch tip:
+% - Pick a preset containing the color name, or use \usepackage{atscv-color-burgundy} in the custom block.
+% Style switch tip:
+% - Pick a preset containing the style name, or use \usepackage{atscv-style-consulting} in the custom block.
+
+% ==================================================
+% ADVANCED CUSTOM MODULE SELECTION
+% Use this instead of a preset.
+% If you enable this block, comment out all presets above.
+% ==================================================
+
+% \usepackage{atscv-schema-cloud}
+% \usepackage{atscv-color-green}
+% \usepackage{atscv-style-modern}
+% \usepackage{atscv-layout-standard}
+% \usepackage{atscv-lang-en}
+
+% Available schemas: general, cloud, security, support, consulting, executive, research
+% Available colors: black, blue, navy, slate, green, teal, burgundy, purple, brown, orange
+% Available styles: ats, modern, executive, consulting, lawfirm, compact
+% Available layouts: standard, compact, executive, letter, ats
+% Available languages: en, de, fr, es, it, pt, da, ru, zh, ja, ar, hi
+
+% After changing package selection, recompile from scratch in Overleaf.
+
+\begin{document}
+
+\cvdebugoptions
+
+\cvname{Fabio Schmeil}
+\cvtitle{IT Systems Integration Specialist | Cloud Infrastructure | Security | Human Risk Analytics}
+\cvemail{f.schmeil@gmail.com}
+\cvphone{+49 176 57624160}
+\cvlocation{Germany | Remote | Open to Relocation | On-Site Available}
+\cvlinkedin{linkedin.com/in/fabio-schmeil}
+\cvgithub{github.com/germ86/atscv}
+\makecvheader
+
+\cvsection{\headingSummary}
+\cvprofile{Cloud infrastructure and security specialist with experience across Linux systems, OpenStack, automation, customer support and structured problem analysis.}
+
+\cvsection{\headingExperience}
+\cventry{Team Lead IT System Administration}{05/2022--05/2023}{TwoS GmbH}{
+  \cvachievement{Led infrastructure operations and contributed to internal infrastructure strategy.}
+  \cvachievement{Worked with Docker, Kubernetes and Ansible-based automation workflows.}
+}
+
+\cvsection{\headingProjects}
+\cvproject{atscv -- ATS-Optimized LaTeX CV Framework}{2026}{Modular LuaLaTeX framework for ATS-safe CV and cover-letter generation with presets, styles, colors and language modules.}
+
+\cvsection{\headingSkills}
+\cvskillgroup{Cloud \& Infrastructure}{OpenStack, Kubernetes, Docker, KVM/QEMU, VMware}
+\cvskillgroup{Automation}{Ansible, Bash, PowerShell}
+\cvskillgroup{Security}{Incident Response, GRC awareness, forensic readiness}
+
+\cvsection{\headingEducation}
+\cveducation{IT Specialist for System Integration (IHK)}{Completed}{01/2017}
+
+\end{document}
