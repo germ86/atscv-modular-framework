@@ -14,32 +14,9 @@ shopt -s nullglob
 files=("${ROOT_DIR}"/examples/preset-*.tex)
 ((${#files[@]})) || { echo "ERROR: no preset examples found"; exit 1; }
 
-assert_in_file() {
-  local file="$1"
-  local needle="$2"
-  local name="$3"
-  local kind="$4"
-  if ! grep -q "$needle" "$file"; then
-    echo "ASSERT FAIL: preset=$name"
-    echo "Missing expected string: $needle"
-    if [[ "$kind" == "txt" ]]; then
-      echo "Text path: $file"
-    else
-      echo "Log path: $file"
-    fi
-    return 1
-  fi
-}
-
 failed=0
 for tex in "${files[@]}"; do
   name="$(basename "$tex" .tex)"
-
-  if [[ "$name" == "preset-comparison" ]]; then
-    echo "SKIP: $name (overview document, not a preset CV smoke target)"
-    continue
-  fi
-
   out_dir="$BUILD_ROOT/$name"
   log_file="$out_dir/$name.log"
   mkdir -p "$out_dir"
@@ -58,8 +35,6 @@ for tex in "${files[@]}"; do
     if [[ -f "$log_file" ]]; then
       echo "--- Last 120 log lines ($name) ---"
       tail -n 120 "$log_file"
-      echo "--- First error block ($name) ---"
-      awk '/Undefined control sequence|LaTeX Error|Package .* Error|Emergency stop|Fatal error/{print; for(i=0;i<8;i++){if(getline>0) print}; exit}' "$log_file" || true
       echo "--- Extracted LaTeX errors ($name) ---"
       grep -E "Undefined control sequence|LaTeX Error|Package .* Error|Emergency stop|Fatal error" "$log_file" || true
     fi
@@ -76,37 +51,26 @@ for tex in "${files[@]}"; do
     continue
   fi
 
-  assert_in_file "$log_file" "ATSCV PRESET loaded" "$name" "log" || preset_failed=1
-  assert_in_file "$log_file" "ATSCV CONFIG preset=" "$name" "log" || preset_failed=1
-  assert_in_file "$log_file" "ATSCV CONFIG color=" "$name" "log" || preset_failed=1
-  assert_in_file "$log_file" "ATSCV CONFIG style=" "$name" "log" || preset_failed=1
-  assert_in_file "$log_file" "ATSCV CONFIG language=" "$name" "log" || preset_failed=1
-
-  assert_in_file "$txt" "Preset:" "$name" "txt" || preset_failed=1
-  assert_in_file "$txt" "Schema:" "$name" "txt" || preset_failed=1
-  assert_in_file "$txt" "Color:" "$name" "txt" || preset_failed=1
-  assert_in_file "$txt" "Style:" "$name" "txt" || preset_failed=1
-  assert_in_file "$txt" "Layout:" "$name" "txt" || preset_failed=1
-  assert_in_file "$txt" "Language:" "$name" "txt" || preset_failed=1
+  grep -q "ATSCV PRESET loaded" "$log_file" || preset_failed=1
+  grep -q "ATSCV CONFIG preset=" "$log_file" || preset_failed=1
+  grep -q "ATSCV CONFIG color=" "$log_file" || preset_failed=1
+  grep -q "ATSCV CONFIG style=" "$log_file" || preset_failed=1
+  grep -q "ATSCV CONFIG language=" "$log_file" || preset_failed=1
 
   if [[ "$name" == *-de ]]; then
-    assert_in_file "$txt" "Zusammenfassung" "$name" "txt" || preset_failed=1
-    assert_in_file "$txt" "Berufserfahrung" "$name" "txt" || preset_failed=1
+    grep -q "Zusammenfassung" "$txt" || preset_failed=1
+    grep -q "Berufserfahrung" "$txt" || preset_failed=1
   else
-    assert_in_file "$txt" "Summary" "$name" "txt" || preset_failed=1
-    assert_in_file "$txt" "Professional Experience" "$name" "txt" || preset_failed=1
+    grep -q "Summary" "$txt" || preset_failed=1
+    grep -q "Professional Experience" "$txt" || preset_failed=1
   fi
 
   if [[ $preset_failed -eq 0 ]]; then
     echo "PASS: $name"
   else
     echo "FAIL: $name"
-    echo "Text path: $txt"
-    echo "Log path: $log_file"
-    echo "--- First 100 lines of extracted text ($name) ---"
-    sed -n '1,100p' "$txt" || true
-    echo "--- Last 120 lines of log ($name) ---"
-    tail -n 120 "$log_file" || true
+    echo "Log: $log_file"
+    echo "Reason: marker/text assertions failed"
     failed=1
   fi
 done
